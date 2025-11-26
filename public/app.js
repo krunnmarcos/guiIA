@@ -1,4 +1,4 @@
-const API_BASE = window.API_BASE_URL || "https://guiia-33486701312.southamerica-east1.run.app";
+const API_BASE = window.API_BASE_URL || "https://guiia-33486701312.southamerica-east1.run.app/api";
 
 const ADMIN_EMAILS = new Set([
   "marcos.irenos@gruporic.com.br",
