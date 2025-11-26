@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GUIA - Suporte ADSIM</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-7DKURx8ap0JxYYVzKsG+uvk1ZXglXnGpRQOUZPq2OT1vq0UEgw93tOt8MWxtWNb5" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">G</div>
+        <div>
+          <div class="brand-name">GUIA · ADSIM</div>
+          <div class="brand-sub">Assistente interno do Grupo RIC</div>
+        </div>
+      </div>
+      <div class="user-actions">
+        <span id="user-email" class="muted"></span>
+        <button id="logout-btn" class="ghost">Sair</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <section class="card auth-card">
+          <h2>Acesso</h2>
+          <div class="tabs">
+            <button id="tab-login" class="tab active">Entrar</button>
+            <button id="tab-register" class="tab">Registrar</button>
+          </div>
+          <form id="login-form" class="form visible">
+            <label>Email corporativo</label>
+            <input type="email" name="email" required placeholder="nome.sobrenome@gruporic.com.br">
+            <label>Senha</label>
+            <input type="password" name="password" required placeholder="••••••••">
+            <button type="submit">Entrar</button>
+          </form>
+          <form id="register-form" class="form">
+            <label>Nome</label>
+            <input type="text" name="firstName" required placeholder="Nome">
+            <label>Sobrenome</label>
+            <input type="text" name="lastName" required placeholder="Sobrenome">
+            <label>Email corporativo</label>
+            <input type="email" name="email" required placeholder="nome.sobrenome@gruporic.com.br">
+            <label>Senha</label>
+            <input type="password" name="password" required placeholder="mínimo 8 caracteres">
+            <button type="submit">Criar conta</button>
+            <p class="muted tiny">Somente domínios @gruporic.com.br são aceitos.</p>
+          </form>
+          <div id="auth-error" class="error"></div>
+        </section>
+
+        <section class="card">
+          <div class="row">
+            <h2>Conversas</h2>
+            <button id="new-chat" class="ghost">+ Novo</button>
+          </div>
+          <div id="chat-list" class="chat-list"></div>
+        </section>
+
+        <section id="admin-panel" class="card hidden">
+          <div class="row">
+            <h2>Admin</h2>
+            <span class="pill">ADM</span>
+          </div>
+          <div class="stack">
+            <button id="export-btn">Exportar CSV</button>
+            <button id="refresh-report" class="ghost">Atualizar relatórios</button>
+            <div class="muted tiny">Admins veem todos os chats; usuários veem apenas os próprios.</div>
+          </div>
+        </section>
+      </aside>
+
+      <section class="chat-area">
+        <div class="chat-header">
+          <div>
+            <div id="chat-title" class="title">Selecione ou crie um chat</div>
+            <div id="chat-subtitle" class="muted">Mensagens ficam salvas no Firestore</div>
+          </div>
+          <div id="connection-status" class="status">Offline</div>
+        </div>
+
+        <div id="messages" class="messages"></div>
+
+        <form id="message-form" class="composer">
+          <textarea id="message-input" rows="3" placeholder="Pergunte algo sobre o ADSIM..." required></textarea>
+          <div class="composer-actions">
+            <span id="typing" class="muted hidden">Gerando resposta...</span>
+            <button type="submit">Enviar</button>
+          </div>
+        </form>
+      </section>
+
+      <aside id="report-panel" class="report card hidden">
+        <h2>Relatórios</h2>
+        <canvas id="usageChart" height="180"></canvas>
+        <canvas id="topicsChart" height="180"></canvas>
+      </aside>
+    </main>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
